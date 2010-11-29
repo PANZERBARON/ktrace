@@ -13,12 +13,12 @@
 
 static int    get_check_points(char *);
 
-struct k_inf	optparser(int argc, char **argv)
+struct k_inf  optparser(int argc, char **argv)
 {
-  int						ch;
-  struct k_inf	infos;
+  int           ch;
+  struct k_inf  infos;
 
-	infos = init_infos_struct();
+  infos = init_infos_struct();
   while ((ch = getopt(argc, argv, "aCcdf:g:ip:t:")) != -1)
     switch(ch)
     {
@@ -62,37 +62,37 @@ struct k_inf	optparser(int argc, char **argv)
      (!*argv && !infos.pidset && infos.ktrop_mode != DISABLE_STP))
     usage_error();
   else if (*argv)
-		infos.command = argv;
- 
+    infos.command = argv;
+
   if (infos.inherit)
     infos.trpoints |= KTRFAC_INHERIT;
 
-	return (infos); 
+  return (infos); 
 }
 
-static int		get_check_points(char *opt_trpoints)
+static int    get_check_points(char *opt_trpoints)
 {
     int trpoints = 0;
 
-		while (*opt_trpoints++)
-			switch(*opt_trpoints)
-			{
-				case 'c':
-					trpoints |= (KTRFAC_SYSRET | KTRFAC_SYSCALL); break;
-				case 'e':
-					trpoints |= KTRFAC_EMUL;  break;
-				case 'i':
-					trpoints |= KTRFAC_GENIO; break;
-				case 'n':
-					trpoints |= KTRFAC_NAMEI; break;
-				case 's':
-					trpoints |= KTRFAC_PSIG;  break;
-				case 'w':
-					trpoints |= KTRFAC_CSW;   break;
-				case '+':
-					trpoints |= TR_POINTS;    break;
-				default:
-					usage_error();
-			}
+    while (*opt_trpoints++)
+      switch(*opt_trpoints)
+      {
+        case 'c':
+          trpoints |= (KTRFAC_SYSRET | KTRFAC_SYSCALL); break;
+        case 'e':
+          trpoints |= KTRFAC_EMUL;  break;
+        case 'i':
+          trpoints |= KTRFAC_GENIO; break;
+        case 'n':
+          trpoints |= KTRFAC_NAMEI; break;
+        case 's':
+          trpoints |= KTRFAC_PSIG;  break;
+        case 'w':
+          trpoints |= KTRFAC_CSW;   break;
+        case '+':
+          trpoints |= TR_POINTS;    break;
+        default:
+          usage_error();
+      }
   return (trpoints);
 }
