@@ -102,3 +102,9 @@ int   ck_pid_mutual_valid(char *pid)
     usage_error();
   return (atoi(pid));
 }
+
+void  no_kernel_compliance(int sign)
+{
+  printf("%s \n", KERNEL_COMPLIANCE_MSG);
+  exit (1);
+}
