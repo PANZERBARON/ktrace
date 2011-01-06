@@ -12,7 +12,8 @@
 #include "my_ktrace.h"
 #include "my_ktrace_utils.h"
 
-struct k_inf  init_infos_struct(void) 
+struct k_inf
+init_infos_struct(void) 
 {
   struct k_inf infos;
 
@@ -29,7 +30,8 @@ struct k_inf  init_infos_struct(void)
   return (infos);
 }
 
-void    check_tracefile(struct k_inf infos)
+void
+check_tracefile(struct k_inf infos)
 {
   int     fd = 0;
   mode_t  omask;
@@ -42,7 +44,7 @@ void    check_tracefile(struct k_inf infos)
       exit (1);
     if (fstat(fd, &sb) != 0 || sb.st_uid != getuid())
     {
-      printf("Refuse to append to %s: not owned by you.",
+      printf("Refuse to append to %s: you're not the owner.",
           infos.tracefile);
       exit (1);
     }
@@ -59,7 +61,8 @@ void    check_tracefile(struct k_inf infos)
   close(fd);
 }
 
-void    do_ktrace_syscalls(struct k_inf infos)
+void
+do_ktrace_syscalls(struct k_inf infos)
 {
   if (infos.ktrop_mode != ENABLE_STP)
   {
@@ -88,14 +91,16 @@ void    do_ktrace_syscalls(struct k_inf infos)
   exit (0);	
 }
 
-void      usage_error(void)
+void
+usage_error(void)
 {
   printf("usage: ktrace [-aCcdi] [-f trfile] [-g pgid] [-p pid] [-t trstr]\n"
          "       ktrace [-adi] [-f trfile] [-t trstr] command\n");
   exit(1);
 }
 
-int   ck_pid_mutual_valid(char *pid)
+int
+ck_pid_mutual_valid(char *pid)
 {
   static int check_mutual_ok = 0;
   if (check_mutual_ok++ || !*pid)
@@ -103,7 +108,8 @@ int   ck_pid_mutual_valid(char *pid)
   return (atoi(pid));
 }
 
-void  no_kernel_compliance(int sign)
+void
+no_kernel_compliance(int sign)
 {
   printf("%s \n", KERNEL_COMPLIANCE_MSG);
   exit (1);

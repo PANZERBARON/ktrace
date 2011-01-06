@@ -13,7 +13,8 @@
 
 static int    get_check_points(char *);
 
-struct k_inf  optparser(int argc, char **argv)
+struct k_inf  
+optparser(int argc, char **argv)
 {
   int           ch;
   struct k_inf  infos;
@@ -70,7 +71,8 @@ struct k_inf  optparser(int argc, char **argv)
   return (infos); 
 }
 
-static int    get_check_points(char *opt_trpoints)
+static int
+get_check_points(char *opt_trpoints)
 {
     int trpoints = 0;
 
