@@ -92,7 +92,7 @@ static int    get_check_points(char *opt_trpoints)
         case '+':
           trpoints |= TR_POINTS;    break;
         default:
-          usage_error();
+          usage_error();            /* Do you wanna dance ? */
       }
   return (trpoints);
 }
